@@ -1,7 +1,7 @@
 from typing import Literal
 import pytest
 from area.calculadora.calculadora import somar_dois_numeros,subtrair_dois_numeros,multiplicar_dois_numeros,dividir_dois_numeros
-from utils.utils import ler_csv     # função de leitura de arquivos csv
+from utils.utils import ler_csv     
 
 def test_somar_dois_numeros():
     num1 = 5 
@@ -41,9 +41,6 @@ def test_dividir_dois_numeros():
     assert resultado_esperado == resultado_obtido
 
 
-# Test Baseados em Dados = Data Driven Tests (DDT) --> Massa de Teste 
-    # Dados em uma lista 
-    # Dados em um arquivo, vários formatos: csv , json , xml , dat 
 
 @pytest.mark.parametrize('num1, num2, resultado_esperado',
                          [
@@ -55,9 +52,7 @@ def test_dividir_dois_numeros():
                         )
 
 def test_somar_dois_numeros_lista(num1: Literal[5] | Literal[0] | Literal[10] | Literal[6], num2: float | Literal[7] | Literal[8] | Literal[-15], resultado_esperado: float | Literal[12] | Literal[8] | Literal[-5]):
-    #num1 = 5 
-    #num2 = 7
-    #resultado_esperado = 12 
+ 
 
     resultado_obtido = somar_dois_numeros(num1,num2) 
 
@@ -69,9 +64,7 @@ def test_somar_dois_numeros_lista(num1: Literal[5] | Literal[0] | Literal[10] | 
                          )
 
 def test_somar_dois_numeros_lista_csv(num1: list | None, num2: list | None, resultado_esperado: list | None):
-    #num1 = 5 
-    #num2 = 7
-    #resultado_esperado = 12 
+ 
 
     resultado_obtido = somar_dois_numeros(float(num1),float(num2)) 
 
