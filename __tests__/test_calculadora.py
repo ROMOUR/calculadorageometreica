@@ -1,6 +1,6 @@
 from typing import Literal
 import pytest
-from test_calculadora import somar_dois_numeros,subtrair_dois_numeros,multiplicar_dois_numeros,dividir_dois_numeros
+from area.calculadora.calculadora import somar_dois_numeros,subtrair_dois_numeros,multiplicar_dois_numeros,dividir_dois_numeros
 from utils.utils import ler_csv     # função de leitura de arquivos csv
 
 def test_somar_dois_numeros():

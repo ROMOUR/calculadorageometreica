@@ -1,6 +1,6 @@
 from typing import Literal
 import pytest
-from test_area import calcular_quadrado,calcular_retangulo,calcular_triangulo
+from area.calculadoraarea import calcular_quadrado,calcular_retangulo,calcular_triangulo
 from utils.utils import ler_csv
 
 def test_calcular_quadrado():
@@ -46,7 +46,7 @@ def test_calcular_quadrado_lista(lado: Literal[5] | Literal[8] | Literal[10] | L
 
 
 @pytest.mark.parametrize('base, altura, area_esperada',
-                            ler_csv('./fixtures/massa_triangulo.csv') 
+                            ler_csv('./fixtures/massa.csv') 
                          )
 
 def test_calcular_triangulo_csv(base: list | None, altura: list | None, area_esperada: list | None):
