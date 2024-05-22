@@ -1,20 +1,5 @@
-import csv
-import math
-from areas import area_quadrado, area_retangulo, area_triangulo, area_circulo
-
-# Dados para os cálculos
-formas = ["quadrado", "retangulo", "triangulo", "circulo"]
-dimensoes = [(5,), (5, 4), (6, 8), (3,)]
-
-# Realizando os cálculos de área
-resultados = []
-for forma, dimensao in zip(formas, dimensoes):
-    if forma == "quadrado":
-        resultado = area_quadrado(*dimensao)
-    elif forma == "retangulo":
-        resultado = area_retangulo(*dimensao)
-    elif forma == "triangulo":
-        resultado = area_triangulo(*dimensao)
-    elif forma == "circulo":
-        resultado = area_circulo(*dimensao)
-    resultados.append(resultado)
+base,altura,area_esperada
+10,20,100
+5,10,25
+8,16,64
+6,12,36

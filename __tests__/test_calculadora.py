@@ -1,23 +1,88 @@
+from typing import Literal
 import pytest
-from test_calculadora import calcular_area_de_um_cuadrado, calcular_area_de_um_retangulo, calcular_area_de_um_triangulo
+from test_calculadora import somar_dois_numeros,subtrair_dois_numeros,multiplicar_dois_numeros,dividir_dois_numeros
+from utils.utils import ler_csv     # função de leitura de arquivos csv
 
-# Casos de prueba para calcular_area_de_um_cuadrado
-def test_calcular_area_de_um_cuadrado_lado_5():
-    assert calcular_area_de_um_cuadrado(5) == 25
+def test_somar_dois_numeros():
+    num1 = 5 
+    num2 = 7
+    resultado_esperado = 12 
 
-def test_calcular_area_de_um_cuadrado_lado_10():
-    assert calcular_area_de_um_cuadrado(10) == 100
+    resultado_obtido = somar_dois_numeros(num1,num2) 
 
-# Casos de prueba para calcular_area_de_um_retangulo
-def test_calcular_area_de_um_retangulo_base_5_altura_4():
-    assert calcular_area_de_um_retangulo(5, 4) == 20 
+    assert resultado_esperado == resultado_obtido
 
-def test_calcular_area_de_um_retangulo_base_10_altura_3():
-    assert calcular_area_de_um_retangulo(10, 3) == 30 
+def test_subtrair_dois_numeros():
+    num1 = 10 
+    num2 = 6 
+    resultado_esperado = 4
 
-# Casos de prueba para calcular_area_de_um_triangulo
-def test_calcular_area_de_um_triangulo_base_6_altura_8():
-    assert calcular_area_de_um_triangulo(6, 8) == 24
+    resultado_obtido = subtrair_dois_numeros(num1,num2)
 
-def test_calcular_area_de_um_triangulo_base_10_altura_5():
-    assert calcular_area_de_um_triangulo(10, 5) == 25
+    assert resultado_esperado == resultado_obtido
+
+    
+def test_multiplicar_dois_numeros():
+    num1 = 3 
+    num2 = 9 
+    resultado_esperado = 27
+
+    resultado_obtido = multiplicar_dois_numeros(num1,num2)
+
+    assert resultado_esperado == resultado_obtido
+
+def test_dividir_dois_numeros():
+    num1 = 64
+    num2 = 4
+    resultado_esperado = 16
+
+    resultado_obtido = dividir_dois_numeros(num1,num2)
+
+    assert resultado_esperado == resultado_obtido
+
+
+# Test Baseados em Dados = Data Driven Tests (DDT) --> Massa de Teste 
+    # Dados em uma lista 
+    # Dados em um arquivo, vários formatos: csv , json , xml , dat 
+
+@pytest.mark.parametrize('num1, num2, resultado_esperado',
+                         [
+                            (5,7,12),
+                            (0,8,8),
+                            (10, -15, -5),
+                            (6, 0.75, 6.75)  
+                         ]
+                        )
+
+def test_somar_dois_numeros_lista(num1: Literal[5] | Literal[0] | Literal[10] | Literal[6], num2: float | Literal[7] | Literal[8] | Literal[-15], resultado_esperado: float | Literal[12] | Literal[8] | Literal[-5]):
+    #num1 = 5 
+    #num2 = 7
+    #resultado_esperado = 12 
+
+    resultado_obtido = somar_dois_numeros(num1,num2) 
+
+    assert resultado_esperado == resultado_obtido
+
+
+@pytest.mark.parametrize('num1, num2, resultado_esperado',
+                            ler_csv('./fixtures/massa_somar.csv') 
+                         )
+
+def test_somar_dois_numeros_lista_csv(num1: list | None, num2: list | None, resultado_esperado: list | None):
+    #num1 = 5 
+    #num2 = 7
+    #resultado_esperado = 12 
+
+    resultado_obtido = somar_dois_numeros(float(num1),float(num2)) 
+
+    assert float(resultado_esperado) == resultado_obtido
+
+   
+def test_dividir_por_zero():
+    num1 = 64
+    num2 = 0
+    resultado_esperado = "Não é possível dividir por zero"
+
+    resultado_obtido = dividir_dois_numeros(num1,num2)
+
+    assert resultado_esperado == resultado_obtido
